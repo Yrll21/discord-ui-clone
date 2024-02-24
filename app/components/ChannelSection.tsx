@@ -5,7 +5,7 @@ const ChannelSection = () => {
   return (
     // whole container for the channel section
     <div
-      className=" fixed top-0 left-16 h-screen w-60 flex flex-col 
+      className=" fixed top-0 left-16 h-screen w-64 flex flex-col 
         bg-gray-800 text-gray-900 shadow-lg"
     >
       {/* channel header */}
