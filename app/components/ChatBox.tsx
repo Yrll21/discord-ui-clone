@@ -1,5 +1,6 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
+import ChatBar from "./ChatBar";
 
 const ChatBox = () => {
   return (
@@ -50,6 +51,7 @@ const ChatBox = () => {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </Post>
+      <ChatBar />
     </div>
   );
 };
