@@ -6,35 +6,24 @@ const ChannelSection = () => {
     // whole container for the channel section
     <div
       className=" fixed top-0 left-16 h-screen w-60 flex flex-col 
-        bg-gray-100 text-gray-900 shadow-lg"
+        bg-gray-800 text-gray-900 shadow-lg"
     >
       {/* channel header */}
-      <div className="bg-gray-200 py-6 pl-4">
+      <div className="text-gray-50 py-6 pl-4">
         <p className="text-2xl font-bold">Channels</p>
       </div>
 
       {/* Channels list */}
       <div className="py-6">
-        <ChannelComponent />
-        <ChannelComponent />
+        <ChannelComponent>Topics</ChannelComponent>
+        <ChannelComponent>Questions</ChannelComponent>
+        <ChannelComponent>Random</ChannelComponent>
       </div>
     </div>
   );
 };
 
-const ChannelComponent = () => {
-  const dropdownContent = (
-    <ul className="relative z-50">
-      <li className="py-2 pl-10 hover:bg-gray-200 cursor-pointer">
-        <span className="text-gray-500">#</span> Item 1
-      </li>
-      <li className="py-2 pl-10 hover:bg-gray-200 cursor-pointer">
-        <span className="text-gray-500">#</span> Item 2
-      </li>
-      {/* Add more items as needed */}
-    </ul>
-  );
-
+const ChannelComponent = ({ children }: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -44,20 +33,29 @@ const ChannelComponent = () => {
   return (
     <>
       <div
-        className={`select-none relative flex items-center py-2 px-2 hover:bg-gray-300 cursor-pointer
-        ${isOpen ? "transition-all duration-500 ease-in-out" : ""}`}
+        className={`m-2 rounded-lg transition-all duration-300 text-gray-500 select-none relative flex items-center py-2 px-2 hover:bg-gray-700 cursor-pointer`}
         onClick={handleClick}
       >
-        {isOpen ? <FaChevronDown /> : <FaChevronRight />}
-        <p className="text-xl pl-2">Topics</p>
-        <FaPlus className="ml-auto" />
+        {isOpen ? (
+          <FaChevronDown className="text-secondary" />
+        ) : (
+          <FaChevronRight className="text-secondary" />
+        )}
+        <p className={`text-xl pl-2 ${isOpen ? "text-secondary" : ""}`}>
+          {children}
+        </p>
+        <FaPlus className="ml-auto text-secondary" />
       </div>
-      <div
-        className={`${
-          isOpen ? "transition-all duration-500 ease-in-out" : "hidden"
-        }`}
-      >
-        {dropdownContent}
+      <div>
+        <ul className={`${isOpen ? "" : "hidden"} text-gray-500`}>
+          <li className="transition-all duration-300 m-2 rounded-lg py-2 pl-10 hover:bg-gray-700 cursor-pointer">
+            <span className="text-gray-400">#</span> Item 1
+          </li>
+          <li className="transition-all duration-300 m-2 rounded-lg py-2 pl-10 hover:bg-gray-700 cursor-pointer">
+            <span className="text-gray-400">#</span> Item 2
+          </li>
+          {/* Add more items as needed */}
+        </ul>
       </div>
     </>
   );
